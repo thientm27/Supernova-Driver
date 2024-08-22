@@ -11,7 +11,6 @@ namespace SupernovaDriver.Scripts.UI.Popups
         protected override void OnShowing()
         {
             base.OnShowing();
-
             // var parameter = (TestParam)Parameter;
             // sampleTest.text = parameter.detail;
         }
