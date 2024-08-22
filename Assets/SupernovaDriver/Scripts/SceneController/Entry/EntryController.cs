@@ -1,7 +1,7 @@
 using DuckSurvivor.Scripts.Configs;
 using UnityEngine;
 
-namespace SupernovaDriver.Scripts.SceneManager.Entry
+namespace SupernovaDriver.Scripts.SceneController.Entry
 {
     public class EntryController : MonoBehaviour
     {
@@ -14,10 +14,8 @@ namespace SupernovaDriver.Scripts.SceneManager.Entry
         }
         private void Start()
         {
-            DontDestroyOnLoad(canvas);
+            //DontDestroyOnLoad(canvas);
             DontDestroyOnLoad(services);
-            
-            canvas.SetActive(false);
             // LOAD ALL CONFIG
             ConfigManager.Instance.LoadAllConfigLocal();
             UnityEngine.SceneManagement.SceneManager.LoadScene(Constants.MainScene);
