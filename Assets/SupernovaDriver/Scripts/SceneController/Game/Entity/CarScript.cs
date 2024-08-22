@@ -5,24 +5,17 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
     public class CarScript : MonoBehaviour
     {
         [SerializeField] private ParticleSystem ghostParticles;
+        [SerializeField] private Transform      thisTf;
         [SerializeField] private Transform      myMesh;
         [SerializeField] private Renderer       myRender;
         [SerializeField] private Rigidbody      myRigidbody;
 
-        public  float speed;
-        public  float rotator;
-        public  float rotatingSpeed = 1f;
-        private float _forceRotate;
-        private float _idAppear;
-        private float _keyAppear;
-        private float _shake;
+        public float speed;
+        public float rotator;
+        public float rotatingSpeed = 1f;
 
-        public  KeyCode    key;
-     
-
-        public  TextMesh  lapDisplay;
-        private Transform _finishLine;
-        public  int       idNumber = -1;
+        public KeyCode  key;
+        public TextMesh lapDisplay;
 
         public Material dayCar;
         public Material nightCar;
@@ -32,21 +25,27 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         public Transform myDriver;
         public Transform explosion;
 
-        private GameObject _finishline;
-        private Material   _originalCar;
-        private int        _lap;
+        private GameObject _finishLineObj;
+        private Transform  _finishLineTf;
         private Vector3    _enterPos;
         private Vector3    _exitPos;
+        private float      _forceRotate;
+        private float      _idAppear;
+        private float      _keyAppear;
+        private float      _shake;
+        private int        _lap;
+
         private void Start()
         {
-            _originalCar = myRender.material;
+            ghostParticles.gameObject.SetActive(false);
+            thisTf = transform;
         }
 
         private void Update()
         {
             if (_shake > 0f)
             {
-                _shake                = Mathf.Max(0f, _shake - Time.deltaTime / 2f);
+                _shake               = Mathf.Max(0f, _shake - Time.deltaTime / 2f);
                 myMesh.localPosition = Random.insideUnitSphere * (_shake * 0.08f);
             }
 
@@ -59,10 +58,10 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 _forceRotate = Mathf.Max(0f, _forceRotate - Time.deltaTime);
             }
 
-            transform.RotateAround(
-                transform.position, Vector3.up,
+            thisTf.RotateAround(
+                thisTf.position, Vector3.up,
                 rotator * Time.deltaTime * 10f * rotatingSpeed * _forceRotate);
-            myRigidbody.rotation = transform.rotation;
+            myRigidbody.rotation = thisTf.rotation;
 
             if (!Input.GetKey(key))
             {
@@ -73,7 +72,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 rotator = Mathf.Min(5f, rotator + Time.deltaTime * 30f);
             }
 
-            myRigidbody.AddForce(transform.forward * (speed * Time.deltaTime * _forceRotate));
+            myRigidbody.AddForce(thisTf.forward * (speed * Time.deltaTime * _forceRotate));
             myRigidbody.angularVelocity = Vector3.zero;
         }
 
@@ -87,25 +86,29 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         private void OnTriggerEnter(Collider col)
         {
-            if (col.tag == "FinishLine")
+            if (col.CompareTag("FinishLine"))
             {
-                _enterPos = base.transform.position;
+                _enterPos = thisTf.position;
             }
         }
 
         private void OnTriggerExit(Collider col)
         {
-            if (col.tag == "FinishLine")
+            if (col.CompareTag("FinishLine"))
             {
-                _exitPos = base.transform.position;
-                if (Vector3.Angle(_finishline.transform.forward, _exitPos - _finishline.transform.position) <= 90f &&
-                    Vector3.Angle(_finishline.transform.forward, _enterPos - _finishline.transform.position) > 90f)
+                _exitPos = transform.position;
+                if (Vector3.Angle(_finishLineObj.transform.forward, _exitPos - _finishLineObj.transform.position) <=
+                    90f &&
+                    Vector3.Angle(_finishLineObj.transform.forward, _enterPos - _finishLineObj.transform.position) >
+                    90f)
                 {
                     _lap++;
                 }
 
-                if (Vector3.Angle(_finishline.transform.forward, _exitPos - _finishline.transform.position) >= 90f &&
-                    Vector3.Angle(_finishline.transform.forward, _enterPos - _finishline.transform.position) < 90f)
+                if (Vector3.Angle(_finishLineObj.transform.forward, _exitPos - _finishLineObj.transform.position) >=
+                    90f &&
+                    Vector3.Angle(_finishLineObj.transform.forward, _enterPos - _finishLineObj.transform.position) <
+                    90f)
                 {
                     _lap--;
                 }
@@ -114,9 +117,8 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         public void Login(int number, KeyCode keynew)
         {
-            key      = keynew;
-            idNumber = number;
-            _shake    = 0.5f;
+            key    = keynew;
+            _shake = 0.5f;
         }
     }
 }
