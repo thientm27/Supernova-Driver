@@ -33,6 +33,8 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         private float      _idAppear;
         private float      _keyAppear;
         private float      _shake;
+        private bool       _isInit;
+        private bool       _isPause;
         private int        _lap;
 
         private void Start()
@@ -43,13 +45,18 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         private void Update()
         {
+            if (!_isInit)
+            {
+                return;
+            }
+
             if (_shake > 0f)
             {
                 _shake               = Mathf.Max(0f, _shake - Time.deltaTime / 2f);
                 myMesh.localPosition = Random.insideUnitSphere * (_shake * 0.08f);
             }
 
-            if (key != 0)
+            if (key != 0 && !_isPause)
             {
                 _forceRotate = Mathf.Min(1f, _forceRotate + Time.deltaTime);
             }
@@ -63,7 +70,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 rotator * Time.deltaTime * 10f * rotatingSpeed * _forceRotate);
             myRigidbody.rotation = thisTf.rotation;
 
-            if (!Input.GetKey(key))
+            if (!Input.GetKey(key) && !_isPause)
             {
                 rotator = Mathf.Max(-5f, rotator - Time.deltaTime * 30f);
             }
@@ -115,10 +122,25 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             }
         }
 
-        public void Login(int number, KeyCode keynew)
+        public void Login(KeyCode keynew)
         {
             key    = keynew;
             _shake = 0.5f;
+        }
+
+        public void Init()
+        {
+            _isInit = true;
+        }
+
+        public void Pause()
+        {
+            _isPause = true;
+        }
+
+        public void Resume()
+        {
+            _isPause = false;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Imba.UI;
+using SupernovaDriver.Scripts.SceneController.Game.Entity;
 using SupernovaDriver.Scripts.UI.View;
 using UnityEngine;
 
@@ -7,20 +8,38 @@ namespace SupernovaDriver.Scripts.SceneController.Game
 {
     public class GameController : MonoBehaviour
     {
+        [SerializeField] private CarScript carScript;
+
         private int _userScore = 0;
 
         private GameView _gameView;
 
         private void Start()
         {
+            PauseGame();
             _gameView = UIManager.Instance.ViewManager.GetViewByName<GameView>(UIViewName.GameView);
             _gameView.Show();
             _gameView.SetDisplayScore(0);
+
+            StartCoroutine(_gameView.StartGameCountDown(
+                () => { carScript.Init(); }
+                , ResumeGame
+            ));
         }
 
         public void OnGetScore(int scoreGot)
         {
             _userScore += 1;
+        }
+
+        public void PauseGame()
+        {
+            carScript.Pause();
+        }
+
+        public void ResumeGame()
+        {
+            carScript.Resume();
         }
     }
 }
