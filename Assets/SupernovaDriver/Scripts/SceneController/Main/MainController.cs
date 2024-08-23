@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MainController : MonoBehaviour
+namespace SupernovaDriver.Scripts.SceneController.Main
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MainController : MonoBehaviour
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            SceneManager.LoadScene(Constants.GameScene);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Update is called once per frame
+        void Update()
+        {
+        }
     }
 }

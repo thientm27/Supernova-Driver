@@ -343,6 +343,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1262177614344194917, guid: d03cb721bf08e4a04a35396b1ad79923, type: 3}
+      propertyPath: OnClickPlay.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262177614344194917, guid: d03cb721bf08e4a04a35396b1ad79923, type: 3}
+      propertyPath: OnClickSetting.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202201619485790367, guid: d03cb721bf08e4a04a35396b1ad79923, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449674312198871839, guid: d03cb721bf08e4a04a35396b1ad79923, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1026835840}
+    - target: {fileID: 7774401477240883663, guid: d03cb721bf08e4a04a35396b1ad79923, type: 3}
+      propertyPath: ViewName
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -353,6 +373,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4178011123730636, guid: d03cb721bf08e4a04a35396b1ad79923, type: 3}
   m_PrefabInstance: {fileID: 1026835838}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1026835840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2026865747991813994, guid: d03cb721bf08e4a04a35396b1ad79923, type: 3}
+  m_PrefabInstance: {fileID: 1026835838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1298724189
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,115 +510,106 @@ MonoBehaviour:
   _database:
   - AudioName: 0
     Type: 1
-    AudioClip: {fileID: 8300000, guid: 726b05f91c95e1d4cb0ffa1685d4dbc9, type: 3}
+    AudioClip: {fileID: 8300000, guid: 62971411349de3347a1e02030dc06543, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 1
     PlayOnAwake: 0
-  - AudioName: 28
+  - AudioName: 1
+    Type: 1
+    AudioClip: {fileID: 8300000, guid: d9f8cc1b4d59f4c4b83e8dcd86c296cf, type: 3}
+    Volume: 1
+    Priority: 0
+    SpatialBlend: 0
+    Source: {fileID: 0}
+    IsLooping: 1
+    PlayOnAwake: 0
+  - AudioName: 2
+    Type: 2
+    AudioClip: {fileID: 8300000, guid: 2c3bd64ba1e19b345b14c6e2ef73d70e, type: 3}
+    Volume: 1
+    Priority: 0
+    SpatialBlend: 0
+    Source: {fileID: 0}
+    IsLooping: 1
+    PlayOnAwake: 0
+  - AudioName: 30
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 1b3ac677593095c40b92eb218b39200f, type: 3}
+    AudioClip: {fileID: 8300000, guid: 2bdcdbf9c362a2f45a84188a4f17b9b9, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 64
+  - AudioName: 32
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 985e7afa3da2eac4790e040f6b518bcd, type: 3}
+    AudioClip: {fileID: 8300000, guid: 7c7ac2184e5ae41448fb52c527dfa50c, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 65
+  - AudioName: 33
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 053db6dbf11e08249a31100edbf0f180, type: 3}
+    AudioClip: {fileID: 8300000, guid: 081a234f9eab565448effc9feba6b6a2, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 66
+  - AudioName: 35
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 535b9ef4fd4eef449a5056e775cdf18d, type: 3}
+    AudioClip: {fileID: 8300000, guid: b39d9385064107840a9bdcf41e21cd05, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 72
+  - AudioName: 36
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 2a0f723328ce3a1428336dc0caab7102, type: 3}
+    AudioClip: {fileID: 8300000, guid: 6a753c4aac04a1a4bba61ac6ccd5e93c, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 67
+  - AudioName: 36
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 7bbe1de92be71ee4b9e94abcba2560d2, type: 3}
+    AudioClip: {fileID: 8300000, guid: cdd77804b45e513448d8c937ecde9491, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 68
+  - AudioName: 38
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 31c52e7e90b861c4abd625afa452d789, type: 3}
+    AudioClip: {fileID: 8300000, guid: 3625bdb5bbc885246bf9dfae7a571589, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 69
+  - AudioName: 39
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 89f40817cb17775458bc8e2a999019ae, type: 3}
+    AudioClip: {fileID: 8300000, guid: 9b97e5dd8b463794892d665d10118eee, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}
     IsLooping: 0
     PlayOnAwake: 0
-  - AudioName: 70
+  - AudioName: 34
     Type: 0
-    AudioClip: {fileID: 8300000, guid: 936c0abc978655e47912c3688d883980, type: 3}
-    Volume: 1
-    Priority: 0
-    SpatialBlend: 0
-    Source: {fileID: 0}
-    IsLooping: 0
-    PlayOnAwake: 0
-  - AudioName: 71
-    Type: 0
-    AudioClip: {fileID: 8300000, guid: 096fbc6392d29ee489f15d2446470726, type: 3}
-    Volume: 1
-    Priority: 0
-    SpatialBlend: 0
-    Source: {fileID: 0}
-    IsLooping: 0
-    PlayOnAwake: 0
-  - AudioName: 31
-    Type: 0
-    AudioClip: {fileID: 8300000, guid: 71ff12a42bdfcf24e8a47a53419b1040, type: 3}
-    Volume: 1
-    Priority: 0
-    SpatialBlend: 0
-    Source: {fileID: 0}
-    IsLooping: 0
-    PlayOnAwake: 0
-  - AudioName: 73
-    Type: 0
-    AudioClip: {fileID: 8300000, guid: 7d861a26de434144bbff5526cd6a7da7, type: 3}
+    AudioClip: {fileID: 8300000, guid: 7341438d55319e241bf503861a373a90, type: 3}
     Volume: 1
     Priority: 0
     SpatialBlend: 0

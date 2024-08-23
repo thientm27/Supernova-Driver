@@ -3,21 +3,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MainView : UIView
+namespace SupernovaDriver.Scripts.UI.View
 {
-    [SerializeField] private TMP_Text txtLevel;
-    [SerializeField] private TMP_Text txtMoney;
-
-    public UnityEvent OnClickPlay;
-    public UnityEvent OnClickSetting;
-
-    public void BTN_Play()
+    public class MainView : UIView
     {
-        OnClickPlay?.Invoke();
-    }    
+        [SerializeField] private TMP_Text txtLevel;
+        [SerializeField] private TMP_Text txtMoney;
 
-    public void BTN_Setting()
-    {
-        OnClickSetting?.Invoke();
-    }    
+        public UnityEvent OnClickPlay;
+        public UnityEvent OnClickSetting;
+
+        public void BTN_Play()
+        {
+            OnClickPlay?.Invoke();
+        }    
+
+        public void BTN_Setting()
+        {
+            OnClickSetting?.Invoke();
+        }    
+    }
 }

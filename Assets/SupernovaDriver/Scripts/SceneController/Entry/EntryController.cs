@@ -12,14 +12,14 @@ namespace SupernovaDriver.Scripts.SceneController.Entry
         {
             Application.targetFrameRate = 60;
         }
+
         private void Start()
         {
             //DontDestroyOnLoad(canvas);
             DontDestroyOnLoad(services);
             // LOAD ALL CONFIG
-            ConfigManager.Instance.LoadAllConfigLocal();
+            // ConfigManager.Instance.LoadAllConfigLocal();
             UnityEngine.SceneManagement.SceneManager.LoadScene(Constants.MainScene);
         }
     }
-
 }
