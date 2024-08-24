@@ -600,7 +600,7 @@ MonoBehaviour:
   - AudioName: 1
     Type: 1
     AudioClip: {fileID: 8300000, guid: d9f8cc1b4d59f4c4b83e8dcd86c296cf, type: 3}
-    Volume: 1
+    Volume: 0.8
     Priority: 0
     SpatialBlend: 0
     Source: {fileID: 0}

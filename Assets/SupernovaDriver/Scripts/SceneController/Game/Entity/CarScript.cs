@@ -9,6 +9,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         [SerializeField] private Transform      myMesh;
         [SerializeField] private Renderer       myRender;
         [SerializeField] private Rigidbody      myRigidbody;
+        [SerializeField] private AudioSource    soundDrive;
 
         public float speed;
         public float rotator;
@@ -136,16 +137,20 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         public void Init()
         {
+            soundDrive.loop = true;
+            soundDrive.Play(22000);
             _isInit = true;
         }
 
         public void Pause()
         {
+            soundDrive.Pause();
             _isPause = true;
         }
 
         public void Resume()
         {
+            soundDrive.UnPause();
             _isPause = false;
         }
     }

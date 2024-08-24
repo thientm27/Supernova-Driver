@@ -9531,6 +9531,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 84
       objectReference: {fileID: 0}
+    - target: {fileID: 2070671323915877392, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070671323915877392, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 504ae2de896c31243b7ded4914959415, type: 3}
     - target: {fileID: 4474025715616393077, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -9600,6 +9608,10 @@ PrefabInstance:
       value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7761891138560217508, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
+      propertyPath: soundDrive
+      value: 
+      objectReference: {fileID: 1199477049}
+    - target: {fileID: 7761891138560217508, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
       propertyPath: RotatingSpeed
       value: 5
       objectReference: {fileID: 0}
@@ -9623,6 +9635,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c398d6700bc1316419f036921cbada84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1199477049 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2070671323915877392, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
+  m_PrefabInstance: {fileID: 1199477047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1214179898
 PrefabInstance:
   m_ObjectHideFlags: 0
