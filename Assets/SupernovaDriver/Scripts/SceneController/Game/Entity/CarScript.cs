@@ -56,13 +56,16 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 myMesh.localPosition = Random.insideUnitSphere * (_shake * 0.08f);
             }
 
-            if (key != 0 && !_isPause)
+            if (key != 0)
             {
                 _forceRotate = Mathf.Min(1f, _forceRotate + Time.deltaTime);
             }
             else
             {
-                _forceRotate = Mathf.Max(0f, _forceRotate - Time.deltaTime);
+                if (!_isPause)
+                {
+                    _forceRotate = Mathf.Max(0f, _forceRotate - Time.deltaTime);
+                }
             }
 
             thisTf.RotateAround(
@@ -70,13 +73,16 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 rotator * Time.deltaTime * 10f * rotatingSpeed * _forceRotate);
             myRigidbody.rotation = thisTf.rotation;
 
-            if (!Input.GetKey(key) && !_isPause)
+            if (!Input.GetKey(key))
             {
                 rotator = Mathf.Max(-5f, rotator - Time.deltaTime * 30f);
             }
             else
             {
-                rotator = Mathf.Min(5f, rotator + Time.deltaTime * 30f);
+                if (!_isPause)
+                {
+                    rotator = Mathf.Min(5f, rotator + Time.deltaTime * 30f);
+                }
             }
 
             myRigidbody.AddForce(thisTf.forward * (speed * Time.deltaTime * _forceRotate));

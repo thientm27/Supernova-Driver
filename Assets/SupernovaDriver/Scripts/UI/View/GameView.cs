@@ -1,5 +1,6 @@
 using System.Collections;
 using CartoonFX;
+using DG.Tweening;
 using Imba.Audio;
 using Imba.UI;
 using TMPro;
@@ -10,34 +11,34 @@ namespace SupernovaDriver.Scripts.UI.View
 {
     public class GameView : UIView
     {
-        [SerializeField] private TextMeshProUGUI   scoreText;
-        [SerializeField] private CFXR_ParticleText countDownThree;
-        [SerializeField] private CFXR_ParticleText countDownTwo;
-        [SerializeField] private CFXR_ParticleText countDownOne;
-        [SerializeField] private CFXR_ParticleText countDownStart;
-
-        [SerializeField] private ParticleSystem fxThree;
-        [SerializeField] private ParticleSystem fxTwo;
-        [SerializeField] private ParticleSystem fxOne;
-        [SerializeField] private ParticleSystem fxStart;
+        [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private Transform       countDownThree;
+        [SerializeField] private Transform       countDownTwo;
+        [SerializeField] private Transform       countDownOne;
+        [SerializeField] private Transform       countDownStart;
 
         public IEnumerator StartGameCountDown(UnityAction callBack1, UnityAction callBack2)
         {
             AudioManager.Instance.PlaySFX(AudioName.CountDown);
-            SetRandomText("3", countDownThree, fxThree);
+            DoCountDownAnimation(countDownThree);
             yield return new WaitForSeconds(1);
             AudioManager.Instance.PlaySFX(AudioName.CountDown);
-            SetRandomText("2", countDownTwo, fxTwo);
+            DoCountDownAnimation(countDownTwo);
             yield return new WaitForSeconds(1);
             AudioManager.Instance.PlaySFX(AudioName.CountDown);
             AudioManager.Instance.PlaySFX(Random.value > 0.5f ? AudioName.SoundCarStart1 : AudioName.SoundCarStart2);
             callBack1?.Invoke();
-            SetRandomText("1", countDownOne, fxOne);
+            DoCountDownAnimation(countDownOne);
             yield return new WaitForSeconds(1);
             AudioManager.Instance.PlaySFX(AudioName.StartGame);
-            SetRandomText("Go", countDownStart, fxStart);
+            DoCountDownAnimation(countDownStart);
             yield return new WaitForSeconds(1);
             callBack2?.Invoke();
+        }
+
+        public void DoCountDownAnimation(Transform target)
+        {
+            target.SetActive(true);
         }
 
         public void SetDisplayScore(int currentScore)
