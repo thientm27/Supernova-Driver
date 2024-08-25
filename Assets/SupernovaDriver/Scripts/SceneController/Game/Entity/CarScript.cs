@@ -35,8 +35,8 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         private float      _idAppear;
         private float      _keyAppear;
         private float      _shake;
-        private bool       _isInit;
-        private bool       _isPause;
+        public bool       _isInit;
+        public bool       _isPause;
         private int        _lap;
 
         [Header("Effect")]
@@ -44,7 +44,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         private void Start()
         {
-            soundDrive.Pause();
+            soundDrive.enabled = false;
             ghostParticles.gameObject.SetActive(false);
             thisTf = transform;
         }
@@ -143,8 +143,8 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         public void Init()
         {
-            soundDrive.loop = true;
-            soundDrive.PlayDelayed(1f);
+            soundDrive.loop    = true;
+            soundDrive.Play();
             _isInit = true;
         }
 
