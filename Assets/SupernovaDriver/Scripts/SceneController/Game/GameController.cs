@@ -2,8 +2,10 @@ using System;
 using Imba.UI;
 using Imba.Utils;
 using SupernovaDriver.Scripts.SceneController.Game.Entity;
+using SupernovaDriver.Scripts.UI.Popups;
 using SupernovaDriver.Scripts.UI.View;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SupernovaDriver.Scripts.SceneController.Game
 {
@@ -28,7 +30,6 @@ namespace SupernovaDriver.Scripts.SceneController.Game
             ));
         }
 
-        
         public void PauseGame()
         {
             carScript.Pause();
@@ -38,14 +39,25 @@ namespace SupernovaDriver.Scripts.SceneController.Game
         {
             carScript.Resume();
         }
+
         public void OnGetScore(int scoreGot)
         {
             _userScore += 1;
         }
 
+        public void ReLoadGame()
+        {
+            SceneManager.LoadScene(Constants.GameScene);
+        }
+
         public void EndGame()
         {
-            
+            UIManager.Instance.PopupManager.ShowPopup(UIPopupName.EndGamePopup, new EndGameParam
+            {
+                userScore        = _userScore,
+                newScore         = false,
+                reloadGameAction = ReLoadGame
+            });
         }
     }
 }

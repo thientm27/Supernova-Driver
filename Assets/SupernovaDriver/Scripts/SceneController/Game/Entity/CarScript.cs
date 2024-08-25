@@ -44,6 +44,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         private void Start()
         {
+            soundDrive.Pause();
             ghostParticles.gameObject.SetActive(false);
             thisTf = transform;
         }
@@ -143,7 +144,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         public void Init()
         {
             soundDrive.loop = true;
-            soundDrive.Play(22000);
+            soundDrive.PlayDelayed(1f);
             _isInit = true;
         }
 
@@ -165,6 +166,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             soundDrive.Pause();
             myMesh.SetActive(false);
             _isInit = false;
+            GameController.Instance.EndGame();
         }
 
         private void PlayExplosion()
