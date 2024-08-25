@@ -1,6 +1,5 @@
 using System.Collections;
 using CartoonFX;
-using DG.Tweening;
 using Imba.Audio;
 using Imba.UI;
 using TMPro;
@@ -20,25 +19,27 @@ namespace SupernovaDriver.Scripts.UI.View
         public IEnumerator StartGameCountDown(UnityAction callBack1, UnityAction callBack2)
         {
             AudioManager.Instance.PlaySFX(AudioName.CountDown);
-            DoCountDownAnimation(countDownThree);
+            StartCoroutine(DoCountDownAnimation(countDownThree));
             yield return new WaitForSeconds(1);
             AudioManager.Instance.PlaySFX(AudioName.CountDown);
-            DoCountDownAnimation(countDownTwo);
+            StartCoroutine(DoCountDownAnimation(countDownTwo));
             yield return new WaitForSeconds(1);
             AudioManager.Instance.PlaySFX(AudioName.CountDown);
             AudioManager.Instance.PlaySFX(Random.value > 0.5f ? AudioName.SoundCarStart1 : AudioName.SoundCarStart2);
             callBack1?.Invoke();
-            DoCountDownAnimation(countDownOne);
+            StartCoroutine(DoCountDownAnimation(countDownOne));
             yield return new WaitForSeconds(1);
             AudioManager.Instance.PlaySFX(AudioName.StartGame);
-            DoCountDownAnimation(countDownStart);
+            StartCoroutine(DoCountDownAnimation(countDownStart));
             yield return new WaitForSeconds(1);
             callBack2?.Invoke();
         }
 
-        public void DoCountDownAnimation(Transform target)
+        public IEnumerator DoCountDownAnimation(Transform target)
         {
             target.SetActive(true);
+            yield return new WaitForSeconds(1);
+            target.SetActive(false);
         }
 
         public void SetDisplayScore(int currentScore)
