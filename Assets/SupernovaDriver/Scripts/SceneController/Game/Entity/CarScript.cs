@@ -99,6 +99,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             if (col.transform.CompareTag(Constants.DeadZoneTag))
             {
                 OnEndGame();
+                col.gameObject.SetActive(false);
             }
         }
 
