@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEditor;
 
@@ -20,7 +21,7 @@ static class SceneAutoLoader
     // [InitializeOnLoad] above makes sure this gets executed.
     static SceneAutoLoader()
     {
-        EditorApplication.playmodeStateChanged += OnPlayModeChanged;
+        EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 
     // Menu items to select the "master" scene and control whether or not to load it.
@@ -60,7 +61,7 @@ static class SceneAutoLoader
     }
 
     // Play mode change callback handles the scene load/reload.
-    private static void OnPlayModeChanged()
+    private static void OnPlayModeChanged(PlayModeStateChange newMode)
     {
         if (!LoadMasterOnPlay)
         {
