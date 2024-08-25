@@ -144,26 +144,27 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         public void Init()
         {
             soundDrive.loop    = true;
-            soundDrive.Play();
-            _isInit = true;
+            soundDrive.enabled = true;
+            
+            _isInit            = true;
         }
 
         public void Pause()
         {
-            soundDrive.Pause();
+            soundDrive.enabled = false;
             _isPause = true;
         }
 
         public void Resume()
         {
-            soundDrive.UnPause();
-            _isPause = false;
+            soundDrive.enabled = true;
+            _isPause           = false;
         }
 
         private void OnEndGame()
         {
             PlayExplosion();
-            soundDrive.Pause();
+            soundDrive.enabled = false;
             myMesh.SetActive(false);
             _isInit = false;
             GameController.Instance.EndGame();
