@@ -13,6 +13,7 @@ public static class Constants
     public const string GameDataKey     = "GameData";
     public const string UserPropertyKey = "UserProperty";
     public const string EndPointTag     = "EndPoint";
+    public const string DeadZoneTag     = "DeadZone";
 
     // Scenes
     public const string EntryScene            = "SupernovaDriver/Scenes/Entry";

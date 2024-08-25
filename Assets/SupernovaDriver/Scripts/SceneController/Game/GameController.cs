@@ -1,12 +1,13 @@
 using System;
 using Imba.UI;
+using Imba.Utils;
 using SupernovaDriver.Scripts.SceneController.Game.Entity;
 using SupernovaDriver.Scripts.UI.View;
 using UnityEngine;
 
 namespace SupernovaDriver.Scripts.SceneController.Game
 {
-    public class GameController : MonoBehaviour
+    public class GameController : ManualSingletonMono<GameController>
     {
         [SerializeField] private CarScript carScript;
 
@@ -27,11 +28,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game
             ));
         }
 
-        public void OnGetScore(int scoreGot)
-        {
-            _userScore += 1;
-        }
-
+        
         public void PauseGame()
         {
             carScript.Pause();
@@ -40,6 +37,15 @@ namespace SupernovaDriver.Scripts.SceneController.Game
         public void ResumeGame()
         {
             carScript.Resume();
+        }
+        public void OnGetScore(int scoreGot)
+        {
+            _userScore += 1;
+        }
+
+        public void EndGame()
+        {
+            
         }
     }
 }

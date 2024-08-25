@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Imba.Audio;
 using UnityEngine;
 
 namespace SupernovaDriver.Scripts.SceneController.Game.Entity
@@ -10,12 +12,11 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         [SerializeField] private Renderer       myRender;
         [SerializeField] private Rigidbody      myRigidbody;
         [SerializeField] private AudioSource    soundDrive;
+        [SerializeField] private float          speed;
+        [SerializeField] private float          rotator;
+        [SerializeField] private float          rotatingSpeed = 1f;
+        [SerializeField] private KeyCode        key;
 
-        public float speed;
-        public float rotator;
-        public float rotatingSpeed = 1f;
-
-        public KeyCode  key;
         public TextMesh lapDisplay;
 
         public Material dayCar;
@@ -37,6 +38,9 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         private bool       _isInit;
         private bool       _isPause;
         private int        _lap;
+
+        [Header("Effect")]
+        [SerializeField] private List<Transform> explosionFx;
 
         private void Start()
         {
@@ -92,9 +96,9 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         private void OnCollisionEnter(Collision col)
         {
-            if (!(GetComponent<Rigidbody>().velocity.magnitude > 1.1f))
+            if (col.transform.CompareTag(Constants.DeadZoneTag))
             {
-                return;
+                OnEndGame();
             }
         }
 
@@ -152,6 +156,27 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         {
             soundDrive.UnPause();
             _isPause = false;
+        }
+
+        private void OnEndGame()
+        {
+            PlayExplosion();
+            soundDrive.Pause();
+            myMesh.SetActive(false);
+            _isInit = false;
+        }
+
+        private void PlayExplosion()
+        {
+            if (explosionFx.Count == 0)
+            {
+                return;
+            }
+
+            var x = Random.Range(0, explosionFx.Count);
+            explosionFx[x].SetActive(true);
+            var rd = Random.Range(35, 38);
+            AudioManager.Instance.PlaySFX((AudioName)rd);
         }
     }
 }
