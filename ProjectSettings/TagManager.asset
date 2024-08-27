@@ -8,6 +8,7 @@ TagManager:
   - Car
   - FxTemporaire
   - DeadZone
+  - Services
   layers:
   - Default
   - TransparentFX

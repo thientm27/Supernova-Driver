@@ -17,6 +17,15 @@
       "dependencies": {},
       "hash": "461b5c0b935497c06d771eb3baf4aaa67a060aab"
     },
+    "com.daftmobile.external-communicator": {
+      "version": "https://github.com/Elympics/unity-lobby.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.daftmobile.elympics": "0.11.0"
+      },
+      "hash": "021a732277ca80e229d17aae0ec62668d12d8745"
+    },
     "com.unity.cinemachine": {
       "version": "2.10.1",
       "depth": 0,
@@ -107,6 +116,22 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.sysroot": {
+      "version": "2.0.10",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.sysroot.linux-x86_64": {
+      "version": "2.0.9",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.test-framework": {
       "version": "1.1.33",
       "depth": 1,
@@ -146,6 +171,16 @@
         "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.toolchain.macos-arm64-linux-x86_64": {
+      "version": "2.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10",
+        "com.unity.sysroot.linux-x86_64": "2.0.9"
       },
       "url": "https://packages.unity.com"
     },
