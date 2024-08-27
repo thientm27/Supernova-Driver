@@ -520,6 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   services: {fileID: 63961911}
+  elympics: {fileID: 0}
 --- !u!1 &2077159505
 GameObject:
   m_ObjectHideFlags: 0
