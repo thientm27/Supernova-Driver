@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ElympicsGameConfig
   m_EditorClassIdentifier: 
   gameName: SupernovaDriver
-  gameId: 9e806e1a-4f6b-4ad8-b93c-7e9d9ce9bd05
-  gameVersion: 1
-  players: 2
-  gameplayScene: Assets/SupernovaDriver/Resources/Rotation/GameScene.unity
-  gameplaySceneAsset: {fileID: 102900000, guid: e3b1390c9e589ad4b9263deb26bd2cb1, type: 3}
+  gameId: 3091c107-a803-4352-a712-d8ae23f0e3a9
+  gameVersion: 2
+  players: 1
+  gameplayScene: Assets/SupernovaDriver/Scenes/GameScene.unity
+  gameplaySceneAsset: {fileID: 102900000, guid: 84504f2763dd7534d94f51e75ad72c33, type: 3}
   botsInServer: 1
   useWeb: 0
   enableReconnect: 0
@@ -46,6 +46,11 @@ MonoBehaviour:
   webPortForHalfRemoteMode: 9102
   playerIndexForHalfRemoteMode: 1
   testMatchData:
-    queueName: 
+    queueName: solo
     regionName: 
-  testPlayers: []
+  testPlayers:
+  - userId: 0
+    isBot: 0
+    botDifficulty: 0
+    gameEngineData: 
+    matchmakerData: []
