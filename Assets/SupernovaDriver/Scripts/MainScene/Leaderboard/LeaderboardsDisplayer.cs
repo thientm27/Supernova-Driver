@@ -16,8 +16,6 @@ public class LeaderboardsDisplayer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playersText;
     [SerializeField] private GameObject noRecordLeaderboard;
 
-    //[SerializeField] private RectTransform rectTransform;
-
     private LeaderboardClient leaderboardClient;
     private LeaderboardClient leaderboardClientAllTime;
 

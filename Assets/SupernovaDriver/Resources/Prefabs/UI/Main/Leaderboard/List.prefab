@@ -253,7 +253,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 126}
+  m_SizeDelta: {x: 813.17, y: 126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3074880223468561419
 CanvasRenderer:
@@ -312,8 +312,8 @@ MonoBehaviour:
   positionText: {fileID: 8606016379124283927}
   nicknameText: {fileID: 7652970816888195594}
   scoreText: {fileID: 2336123750027355972}
-  highlightColor: {r: 1, g: 1, b: 1, a: 0}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightColor: {r: 1, g: 1, b: 1, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 0.69803923}
 --- !u!1 &4866694066231151601
 GameObject:
   m_ObjectHideFlags: 0

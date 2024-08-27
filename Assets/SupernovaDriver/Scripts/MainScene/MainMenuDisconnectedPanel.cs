@@ -15,12 +15,12 @@ public class MainMenuDisconnectedPanel : MonoBehaviour
     }
     private void Start()
     {
-        //ElympicsLobbyClient.Instance.WebSocketSession.Disconnected += WebSocketSession_Disconnected;
+        ElympicsLobbyClient.Instance.WebSocketSession.Disconnected += WebSocketSession_Disconnected;
     }
 
     private void OnDisable()
     {
-        //ElympicsLobbyClient.Instance.WebSocketSession.Disconnected -= WebSocketSession_Disconnected;
+        ElympicsLobbyClient.Instance.WebSocketSession.Disconnected -= WebSocketSession_Disconnected;
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class MainMenuDisconnectedPanel : MonoBehaviour
     }
 
 
-    private void WebSocketSession_Disconnected()
+    private void WebSocketSession_Disconnected(DisconnectionData data)
     {
         if (!isWalletRelatedOperations) panel.SetActive(true);
         else isWalletRelatedOperations = false;

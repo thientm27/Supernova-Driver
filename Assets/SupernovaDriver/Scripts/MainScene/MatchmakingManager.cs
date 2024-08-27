@@ -20,7 +20,6 @@ public class MatchmakingManager : MonoBehaviour
         ElympicsLobbyClient.Instance.AuthenticationSucceeded += OnAuthenticationSucceeded;
 
         ElympicsLobbyClient.Instance.Matchmaker.MatchmakingFailed += OnMatchmakingFailed;
-        //ElympicsLobbyClient.Instance.RoomsManager.ma
     }
 
     private void OnDestroy()
@@ -46,7 +45,7 @@ public class MatchmakingManager : MonoBehaviour
     private void OnMatchmakingFailed((string error, Guid _) result)
     {
         errorPanel.Display(result.error);
-        throbber.gameObject.SetActive(false);
+        throbber.SetActive(false);
         ControlPlayAccess(true);
     }
 
@@ -59,7 +58,7 @@ public class MatchmakingManager : MonoBehaviour
             return;
         }
 
-        throbber.gameObject.SetActive(true);
+        throbber.SetActive(true);
         ControlPlayAccess(false);
 
         await ElympicsLobbyClient.Instance.RoomsManager.StartQuickMatch(ElympicsAuthenticateHandler.Instance.QueueName); //Start match with propper queue name, start Gameplay scene after success
