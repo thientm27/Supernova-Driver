@@ -1,4 +1,5 @@
 using DuckSurvivor.Scripts.Configs;
+using Services;
 using UnityEngine;
 
 namespace SupernovaDriver.Scripts.SceneController.Entry
@@ -8,10 +9,23 @@ namespace SupernovaDriver.Scripts.SceneController.Entry
         [SerializeField] private GameObject canvas;
         [SerializeField] private GameObject services;
 
-        private void Awake()
+		private GameServices gameServices = null;
+		private void Awake()
         {
             Application.targetFrameRate = 60;
-        }
+
+			if (GameObject.FindGameObjectWithTag(Constants.ServicesTag) == null)
+			{
+				GameObject gameServiceObject = new(nameof(GameServices))
+				{
+					tag = Constants.ServicesTag
+				};
+				gameServices = gameServiceObject.AddComponent<GameServices>();
+
+				// Add Services
+				gameServices.AddService(new ElympicsService());
+			}
+		}
 
         private void Start()
         {
