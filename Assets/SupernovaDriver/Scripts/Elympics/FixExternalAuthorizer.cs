@@ -17,5 +17,6 @@ return;
         ElympicsExternalCommunicator.Instance.SetCustomExternalAuthenticator(new StandaloneExternalAuthenticator(authorizerConfig));
 #endif
         //ElympicsExternalCommunicator.Instance.GameStatusCommunicator.ApplicationInitialized();
+        DontDestroyOnLoad(gameObject);
     }
 }

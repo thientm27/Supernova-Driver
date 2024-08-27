@@ -21,10 +21,10 @@ namespace Services
         private Action onInitEnded;
         public void Initialized(Action onEnded)
         {
-            CreateLeaderboardClient();
-            ElympicsLobbyClient.Instance.AuthenticationSucceeded += HandleAuthenticated;
-            ElympicsLobbyClient.Instance.AuthenticationFailed += AuthenticattionFailed;
-            onInitEnded = onEnded;
+            //CreateLeaderboardClient();
+            //ElympicsLobbyClient.Instance.AuthenticationSucceeded += HandleAuthenticated;
+            //ElympicsLobbyClient.Instance.AuthenticationFailed += AuthenticattionFailed;
+            //onInitEnded = onEnded;
         }
         public async void StartMatchmaking()
         {
