@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using Elympics;
 using Imba.Audio;
 using UnityEngine;
 
 namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 {
-    public class CarScript : MonoBehaviour
+    public class CarScript : ElympicsMonoBehaviour, IInitializable, IUpdatable
     {
         [SerializeField] private ParticleSystem ghostParticles;
         [SerializeField] private Transform      thisTf;
@@ -12,92 +13,79 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         [SerializeField] private Renderer       myRender;
         [SerializeField] private Rigidbody      myRigidbody;
         [SerializeField] private AudioSource    soundDrive;
-        [SerializeField] private float          speed;
-        [SerializeField] private float          rotator;
-        [SerializeField] private float          rotatingSpeed = 1f;
-        [SerializeField] private KeyCode        key;
 
-        public TextMesh lapDisplay;
+        [SerializeField] private float configSpeed;
+        [SerializeField] private float configRotator;
+        [SerializeField] private float configRotatingSpeed;
 
-        public Material dayCar;
-        public Material nightCar;
-        public Material customCar;
-
-        public Transform target;
-        public Transform myDriver;
-        public Transform explosion;
+        public ElympicsFloat speed;
+        public ElympicsFloat rotator;
+        public ElympicsFloat rotatingSpeed;
+        public ElympicsFloat forceRotate;
+        public ElympicsBool  isMove;
+        public ElympicsBool  isInit;
+        public ElympicsBool  isPause;
 
         private GameObject _finishLineObj;
         private Transform  _finishLineTf;
         private Vector3    _enterPos;
         private Vector3    _exitPos;
-        private float      _forceRotate;
-        private float      _idAppear;
-        private float      _keyAppear;
-        private float      _shake;
-        public  bool       _isMove;
-        public  bool       _isInit;
-        public  bool       _isPause;
-        private int        _lap;
 
         [Header("Effect")]
         [SerializeField] private List<Transform> explosionFx;
 
-        private void Start()
-        {
-            soundDrive.enabled = false;
-            ghostParticles.gameObject.SetActive(false);
-            thisTf = transform;
-        }
-
         public void SetControl(bool value)
         {
-            _isMove = value;
+            isMove.Value = value;
         }
 
-        private void Update()
+        public void ElympicsUpdate()
         {
-            if (!_isInit)
+            if (!isInit)
             {
                 return;
             }
 
-            if (_shake > 0f)
+            if (!isPause)
             {
-                _shake               = Mathf.Max(0f, _shake - Time.deltaTime / 2f);
-                myMesh.localPosition = Random.insideUnitSphere * (_shake * 0.08f);
-            }
-
-            if (key != 0)
-            {
-                _forceRotate = Mathf.Min(1f, _forceRotate + Time.deltaTime);
+                forceRotate.Value = Mathf.Min(1f, forceRotate.Value + Elympics.TickDuration);
             }
             else
             {
-                if (!_isPause)
-                {
-                    _forceRotate = Mathf.Max(0f, _forceRotate - Time.deltaTime);
-                }
+                forceRotate.Value = Mathf.Max(0f, forceRotate.Value - Elympics.TickDuration);
             }
 
-            thisTf.RotateAround(
-                thisTf.position, Vector3.up,
-                rotator * Time.deltaTime * 10f * rotatingSpeed * _forceRotate);
+            // if (isPause)
+            // {
+            //     forceRotate.Value = Mathf.Min(1f, forceRotate.Value + Elympics.TickDuration);
+            // }
+            // else
+            // {
+            //     forceRotate.Value = Mathf.Max(0f, forceRotate.Value - Elympics.TickDuration);
+            // }
+
+            thisTf.RotateAround(thisTf.position, Vector3.up,
+                rotator.Value * Elympics.TickDuration * 10f * rotatingSpeed.Value * forceRotate.Value);
             myRigidbody.rotation = thisTf.rotation;
 
-            if (!_isMove)
+
+            if (!isMove)
             {
-                rotator = Mathf.Max(-5f, rotator - Time.deltaTime * 30f);
+                rotator.Value = (Mathf.Max(-5f, rotator - Elympics.TickDuration * 30f));
             }
             else
             {
-                if (!_isPause)
+                if (!isPause)
                 {
-                    rotator = Mathf.Min(5f, rotator + Time.deltaTime * 30f);
+                    rotator.Value = (Mathf.Min(5f, rotator + Elympics.TickDuration * 30f));
                 }
             }
 
-            myRigidbody.AddForce(thisTf.forward * (speed * Time.deltaTime * _forceRotate));
+            var x = speed.Value;
+            var y = Elympics.TickDuration;
+            var z = forceRotate.Value;
+
+            myRigidbody.AddForce(thisTf.forward * (speed.Value * Elympics.TickDuration * forceRotate.Value));
             myRigidbody.angularVelocity = Vector3.zero;
         }
 
@@ -122,43 +110,27 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         {
             if (col.CompareTag("FinishLine"))
             {
-                _exitPos = transform.position;
-                if (Vector3.Angle(_finishLineObj.transform.forward, _exitPos - _finishLineObj.transform.position) <=
-                    90f &&
-                    Vector3.Angle(_finishLineObj.transform.forward, _enterPos - _finishLineObj.transform.position) >
-                    90f)
-                {
-                    _lap++;
-                }
-
-                if (Vector3.Angle(_finishLineObj.transform.forward, _exitPos - _finishLineObj.transform.position) >=
-                    90f &&
-                    Vector3.Angle(_finishLineObj.transform.forward, _enterPos - _finishLineObj.transform.position) <
-                    90f)
-                {
-                    _lap--;
-                }
             }
         }
-        
+
         public void Init()
         {
             soundDrive.loop    = true;
             soundDrive.enabled = true;
 
-            _isInit = true;
+            isInit.Value = true;
         }
 
         public void Pause()
         {
             soundDrive.enabled = false;
-            _isPause           = true;
+            isPause.Value      = false;
         }
 
         public void Resume()
         {
             soundDrive.enabled = true;
-            _isPause           = false;
+            isPause.Value      = false;
         }
 
         private void OnEndGame()
@@ -166,7 +138,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             PlayExplosion();
             soundDrive.enabled = false;
             myMesh.SetActive(false);
-            _isInit = false;
+            isInit.Value = false;
             GameController.Instance.EndGame();
         }
 
@@ -182,5 +154,25 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             var rd = Random.Range(35, 38);
             AudioManager.Instance.PlaySFX((AudioName)rd);
         }
+
+        #region NEW ElympicsMonoBehaviour
+
+        public void Initialize()
+        {
+            speed         = new(configSpeed);
+            rotator       = new(configRotator);
+            rotatingSpeed = new(configRotatingSpeed);
+            forceRotate   = new(0);
+
+            isMove  = new(false);
+            isInit  = new(false);
+            isPause = new(false);
+
+            soundDrive.enabled = false;
+            ghostParticles.gameObject.SetActive(false);
+            thisTf = transform;
+        }
+
+        #endregion
     }
 }

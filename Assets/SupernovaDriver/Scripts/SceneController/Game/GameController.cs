@@ -1,4 +1,3 @@
-using System;
 using Imba.UI;
 using Imba.Utils;
 using SupernovaDriver.Scripts.SceneController.Game.Entity;
@@ -21,6 +20,11 @@ namespace SupernovaDriver.Scripts.SceneController.Game
         {
             PauseGame();
             _gameView = UIManager.Instance.ViewManager.GetViewByName<GameView>(UIViewName.GameView);
+           
+        }
+
+        public void StartGame()
+        {
             _gameView.Show();
             _gameView.SetDisplayScore(0);
 
@@ -59,5 +63,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game
                 reloadGameAction = ReLoadGame
             });
         }
+
+
     }
 }
