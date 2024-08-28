@@ -35,8 +35,9 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         private float      _idAppear;
         private float      _keyAppear;
         private float      _shake;
-        public bool       _isInit;
-        public bool       _isPause;
+        public  bool       _isMove;
+        public  bool       _isInit;
+        public  bool       _isPause;
         private int        _lap;
 
         [Header("Effect")]
@@ -47,6 +48,11 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             soundDrive.enabled = false;
             ghostParticles.gameObject.SetActive(false);
             thisTf = transform;
+        }
+
+        public void SetControl(bool value)
+        {
+            _isMove = value;
         }
 
         private void Update()
@@ -79,7 +85,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 rotator * Time.deltaTime * 10f * rotatingSpeed * _forceRotate);
             myRigidbody.rotation = thisTf.rotation;
 
-            if (!Input.GetKey(key))
+            if (!_isMove)
             {
                 rotator = Mathf.Max(-5f, rotator - Time.deltaTime * 30f);
             }
@@ -134,25 +140,19 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 }
             }
         }
-
-        public void Login(KeyCode keynew)
-        {
-            key    = keynew;
-            _shake = 0.5f;
-        }
-
+        
         public void Init()
         {
             soundDrive.loop    = true;
             soundDrive.enabled = true;
-            
-            _isInit            = true;
+
+            _isInit = true;
         }
 
         public void Pause()
         {
             soundDrive.enabled = false;
-            _isPause = true;
+            _isPause           = true;
         }
 
         public void Resume()
