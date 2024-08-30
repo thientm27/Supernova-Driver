@@ -1243,38 +1243,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328984878}
   m_CullTransparentMesh: 0
---- !u!1 &346099420 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4038678426090251084, guid: 3cdf86a27de66234b9a3326606f73313, type: 3}
-  m_PrefabInstance: {fileID: 1349921083}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &346099424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346099420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97d1006405763c4188e6caccf5c12a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 5bbd5c9b8c78848a3a8be43e7d211d32, type: 2}
-  _browserJsConfig: {fileID: 11400000, guid: 58c72dd5cfa714314bc0f6eaf9589054, type: 2}
---- !u!114 &346099425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346099420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a17e61a6b14d57419a5a78f40ffe863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 5bbd5c9b8c78848a3a8be43e7d211d32, type: 2}
 --- !u!1001 &367912983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4607,13 +4575,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4038678426090251084, guid: 3cdf86a27de66234b9a3326606f73313, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 346099425}
-    - targetCorrespondingSourceObject: {fileID: 4038678426090251084, guid: 3cdf86a27de66234b9a3326606f73313, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 346099424}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cdf86a27de66234b9a3326606f73313, type: 3}
 --- !u!1 &1358169139
 GameObject:

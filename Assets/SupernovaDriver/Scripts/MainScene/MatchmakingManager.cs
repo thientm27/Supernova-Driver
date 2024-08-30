@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using JetBrains.Annotations;
 using Elympics.Models.Authentication;
+using ElympicsLobbyPackage;
 
 public class MatchmakingManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class MatchmakingManager : MonoBehaviour
         ElympicsLobbyClient.Instance.AuthenticationSucceeded += OnAuthenticationSucceeded;
 
         ElympicsLobbyClient.Instance.Matchmaker.MatchmakingFailed += OnMatchmakingFailed;
+        ElympicsExternalCommunicator.Instance.GameStatusCommunicator.ApplicationInitialized();
     }
 
     private void OnDestroy()
