@@ -55,18 +55,15 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
                 forceRotate.Value = Mathf.Max(0f, forceRotate.Value - Elympics.TickDuration);
             }
 
-            // if (isPause)
-            // {
-            //     forceRotate.Value = Mathf.Min(1f, forceRotate.Value + Elympics.TickDuration);
-            // }
-            // else
-            // {
-            //     forceRotate.Value = Mathf.Max(0f, forceRotate.Value - Elympics.TickDuration);
-            // }
+            // thisTf.RotateAround(thisTf.position, Vector3.up,
+            //     rotator.Value * Elympics.TickDuration * 10f * rotatingSpeed.Value * forceRotate.Value);
+            Quaternion rotationDelta = Quaternion.AngleAxis(
+                rotator.Value * Elympics.TickDuration * 10f * rotatingSpeed.Value * forceRotate.Value,
+                Vector3.up
+            );
 
-            thisTf.RotateAround(thisTf.position, Vector3.up,
-                rotator.Value * Elympics.TickDuration * 10f * rotatingSpeed.Value * forceRotate.Value);
-            myRigidbody.rotation = thisTf.rotation;
+            myRigidbody.rotation *= rotationDelta;
+            //myRigidbody.rotation =  thisTf.rotation;
 
 
             if (!isMove)
@@ -98,27 +95,11 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             }
         }
 
-        private void OnTriggerEnter(Collider col)
-        {
-            if (col.CompareTag("FinishLine"))
-            {
-                _enterPos = thisTf.position;
-            }
-        }
-
-        private void OnTriggerExit(Collider col)
-        {
-            if (col.CompareTag("FinishLine"))
-            {
-            }
-        }
-
         public void Init()
         {
             soundDrive.loop    = true;
             soundDrive.enabled = true;
-
-            isInit.Value = true;
+            isInit.Value       = true;
         }
 
         public void Pause()

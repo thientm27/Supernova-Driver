@@ -14859,7 +14859,7 @@ MonoBehaviour:
   forceNetworkId: 0
   networkId: 3
   predictableFor:
-    playerIndex: -3
+    playerIndex: 0
   isUpdatableForNonOwners: 0
   visibleFor:
     playerIndex: -3
@@ -36218,11 +36218,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4927640352017680741, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
       propertyPath: isUpdatableForNonOwners
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4927640352017680741, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
       propertyPath: predictableFor.playerIndex
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7471362781292830547, guid: 3447a5416fb5ac748a6db4ea956b0663, type: 3}
       propertyPath: m_Name
