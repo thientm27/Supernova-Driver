@@ -13,7 +13,7 @@ public class PersistentLobbyManager : MonoBehaviour
 
     public enum AppState
     {
-        Lobby, MatchMaking, Gameplau
+        Lobby, MatchMaking, Gameplay
     }
     private AppState appState = AppState.Lobby;
     public void SetAppState(AppState newState)
@@ -33,14 +33,21 @@ public class PersistentLobbyManager : MonoBehaviour
 
     private void Start()
     {
+        ElympicsLobbyClient.Instance.AuthenticationSucceeded += OnAuthenticationSucceeded;
         GameObject elympicsExternalCommunicator = ElympicsExternalCommunicator.Instance.gameObject;
         sessionManager = elympicsExternalCommunicator.GetComponent<SessionManager>();
         web3Wallet = elympicsExternalCommunicator.GetComponent<Web3Wallet>();
 
         SetLobbyUIManager();
 
+        Debug.Log("## elympic " + ElympicsExternalCommunicator.Instance);
+        Debug.Log("## elympic " + ElympicsExternalCommunicator.Instance.GameStatusCommunicator);
         ElympicsExternalCommunicator.Instance.GameStatusCommunicator.ApplicationInitialized();
         AttemptStartAuthenticate().Forget();
+    }
+    private void OnAuthenticationSucceeded(Elympics.Models.Authentication.AuthData data)
+    {
+
     }
 
     private async UniTask AttemptStartAuthenticate()
