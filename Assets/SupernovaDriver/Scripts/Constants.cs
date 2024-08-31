@@ -14,6 +14,7 @@ public static class Constants
     public const string UserPropertyKey = "UserProperty";
     public const string EndPointTag     = "EndPoint";
     public const string DeadZoneTag     = "DeadZone";
+    public const string CarTag          = "Car";
 
     // Scenes
     public const string EntryScene            = "SupernovaDriver/Scenes/Entry";
