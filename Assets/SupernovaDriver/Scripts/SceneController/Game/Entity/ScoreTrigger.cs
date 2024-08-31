@@ -1,8 +1,8 @@
-using UnityEngine;
+using Elympics;
 
 namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 {
-    public class ScoreTrigger : MonoBehaviour
+    public class ScoreTrigger : ElympicsMonoBehaviour
     {
         private bool isScored = false;
 
@@ -30,5 +30,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
             isScored = true;
         }
+        
+        
     }
 }

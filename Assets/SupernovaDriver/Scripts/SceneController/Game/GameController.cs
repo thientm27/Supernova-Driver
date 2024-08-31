@@ -13,8 +13,8 @@ namespace SupernovaDriver.Scripts.SceneController.Game
     {
         [SerializeField] private CarScript         carScript;
         [SerializeField] private GameServerHandler serverHandler;
+        [SerializeField] private GameScoreHandler gameScoreHandler;
 
-        private int _userScore = 0;
 
         private GameView _gameView;
 
@@ -51,11 +51,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game
             carScript.Resume();
         }
 
-        public void OnGetScore(int scoreGot)
-        {
-            _userScore += 1;
-        }
-
+      
         public void ReLoadGame()
         {
             SceneManager.LoadScene(Constants.GameScene);
@@ -70,11 +66,24 @@ namespace SupernovaDriver.Scripts.SceneController.Game
             
             UIManager.Instance.PopupManager.ShowPopup(UIPopupName.EndGamePopup, new EndGameParam
             {
-                userScore        = _userScore,
+                userScore        = 0,
                 newScore         = false,
                 reloadGameAction = ReLoadGame
             });
         }
-        
+
+        public void GotScore(bool isDouble)
+        {
+            if (isDouble)
+            {
+                gameScoreHandler.AddDoubleScore();;
+
+            }
+            else
+            {
+                gameScoreHandler.AddNormalScore();;
+
+            }
+        }
     }
 }
