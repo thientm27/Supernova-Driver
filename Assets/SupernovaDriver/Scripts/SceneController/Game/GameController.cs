@@ -20,18 +20,23 @@ namespace SupernovaDriver.Scripts.SceneController.Game
         {
             PauseGame();
             _gameView = UIManager.Instance.ViewManager.GetViewByName<GameView>(UIViewName.GameView);
-           
         }
 
-        public void StartGame()
+        public void StartGame(bool isClient)
         {
             _gameView.Show();
             _gameView.SetDisplayScore(0);
-
-            StartCoroutine(_gameView.StartGameCountDown(
-                () => { carScript.Init(); }
-                , ResumeGame
-            ));
+            if (isClient)
+            {
+                StartCoroutine(_gameView.StartGameCountDown(null, null));
+            }
+            else
+            {
+                StartCoroutine(_gameView.StartGameCountDown(
+                    () => { carScript.Init(); }
+                    , ResumeGame
+                ));
+            }
         }
 
         public void PauseGame()
@@ -63,7 +68,5 @@ namespace SupernovaDriver.Scripts.SceneController.Game
                 reloadGameAction = ReLoadGame
             });
         }
-
-
     }
 }

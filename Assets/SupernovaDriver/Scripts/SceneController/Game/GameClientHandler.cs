@@ -5,13 +5,10 @@ namespace SupernovaDriver.Scripts.SceneController.Game
 {
     public class GameClientHandler : ElympicsMonoBehaviour, IClientHandlerGuid
     {
-        public void OnConnected(Guid matchId)
-        {
-           // GameController.Instance.StartGame();
-        }
+  
         public void OnMatchJoined(Guid matchId)
         {
-           // GameController.Instance.StartGame();
+           GameController.Instance.StartGame(true);
         }
 
         public void OnMatchJoinedFailed(string errorMessage)

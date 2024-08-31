@@ -89,7 +89,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game
                 return;
 
             _gameStarted = true;
-            GameController.Instance.StartGame();
+            GameController.Instance.StartGame(false);
 
             DLogger.Log("All players have connected.");
         }
