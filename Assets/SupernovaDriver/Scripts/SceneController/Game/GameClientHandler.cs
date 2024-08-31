@@ -7,11 +7,11 @@ namespace SupernovaDriver.Scripts.SceneController.Game
     {
         public void OnConnected(Guid matchId)
         {
-            GameController.Instance.StartGame();
+           // GameController.Instance.StartGame();
         }
         public void OnMatchJoined(Guid matchId)
         {
-            GameController.Instance.StartGame();
+           // GameController.Instance.StartGame();
         }
 
         public void OnMatchJoinedFailed(string errorMessage)

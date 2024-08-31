@@ -8,9 +8,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
     public class CarScript : ElympicsMonoBehaviour, IInitializable, IUpdatable
     {
         [SerializeField] private ParticleSystem ghostParticles;
-        [SerializeField] private Transform      thisTf;
         [SerializeField] private Transform      myMesh;
-        [SerializeField] private Renderer       myRender;
         [SerializeField] private Rigidbody      myRigidbody;
         [SerializeField] private AudioSource    soundDrive;
 
@@ -28,8 +26,6 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
         private GameObject _finishLineObj;
         private Transform  _finishLineTf;
-        private Vector3    _enterPos;
-        private Vector3    _exitPos;
 
         [Header("Effect")]
         [SerializeField] private List<Transform> explosionFx;
@@ -82,7 +78,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             var y = Elympics.TickDuration;
             var z = forceRotate.Value;
 
-            myRigidbody.AddForce(thisTf.forward * (speed.Value * Elympics.TickDuration * forceRotate.Value));
+            myRigidbody.AddForce(myRigidbody.transform.forward * (speed.Value * Elympics.TickDuration * forceRotate.Value));
             myRigidbody.angularVelocity = Vector3.zero;
         }
 
@@ -151,7 +147,6 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
 
             soundDrive.enabled = false;
             ghostParticles.gameObject.SetActive(false);
-            thisTf = transform;
         }
 
         #endregion
