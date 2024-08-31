@@ -74,16 +74,17 @@ namespace SupernovaDriver.Scripts.SceneController.Game
 
         public void GotScore(bool isDouble)
         {
+            var scoreGot = 1;
             if (isDouble)
             {
-                gameScoreHandler.AddDoubleScore();;
-
+                scoreGot = gameScoreHandler.AddDoubleScore();;
             }
             else
             {
                 gameScoreHandler.AddNormalScore();;
 
             }
+            // do some effect
         }
     }
 }

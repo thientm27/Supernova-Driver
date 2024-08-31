@@ -13,13 +13,15 @@ namespace SupernovaDriver.Scripts.SceneController.Game
         public void Initialize()
         {
             _userScore = new(0);
-            _userScore = new(_scoreSteak);
+            _scoreSteak = new(_scoreSteak);
         }
 
-        public void AddDoubleScore()
+        public int AddDoubleScore()
         {
             _scoreSteak.Value++;
-            _userScore.Value += (_scoreSteak.Value * 2);
+            var scoreGet = (_scoreSteak.Value * 2);
+            _userScore.Value += scoreGet;
+            return scoreGet;
         }
 
         public void AddNormalScore()

@@ -19,6 +19,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             }
 
             isScored = true;
+            GameController.Instance.GotScore(true);
         }
 
         public void OnTriggerNormalScore()
@@ -29,8 +30,7 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             }
 
             isScored = true;
+            GameController.Instance.GotScore(false);
         }
-        
-        
     }
 }
