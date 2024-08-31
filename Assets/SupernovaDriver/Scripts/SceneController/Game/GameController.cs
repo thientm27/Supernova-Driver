@@ -1,3 +1,4 @@
+using Elympics;
 using Imba.UI;
 using Imba.Utils;
 using SupernovaDriver.Scripts.SceneController.Game.Entity;
@@ -10,7 +11,8 @@ namespace SupernovaDriver.Scripts.SceneController.Game
 {
     public class GameController : ManualSingletonMono<GameController>
     {
-        [SerializeField] private CarScript carScript;
+        [SerializeField] private CarScript         carScript;
+        [SerializeField] private GameServerHandler serverHandler;
 
         private int _userScore = 0;
 
@@ -59,8 +61,13 @@ namespace SupernovaDriver.Scripts.SceneController.Game
             SceneManager.LoadScene(Constants.GameScene);
         }
 
-        public void EndGame()
+        public void EndGame(bool isClient)
         {
+            if (!isClient)
+            {
+                serverHandler.EndGameServer();
+            }
+            
             UIManager.Instance.PopupManager.ShowPopup(UIPopupName.EndGamePopup, new EndGameParam
             {
                 userScore        = _userScore,
@@ -68,5 +75,6 @@ namespace SupernovaDriver.Scripts.SceneController.Game
                 reloadGameAction = ReLoadGame
             });
         }
+        
     }
 }

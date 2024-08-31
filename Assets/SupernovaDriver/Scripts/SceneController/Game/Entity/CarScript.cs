@@ -16,16 +16,16 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         [SerializeField] private float configRotator;
         [SerializeField] private float configRotatingSpeed;
 
-        public ElympicsFloat speed;
-        public ElympicsFloat rotator;
-        public ElympicsFloat rotatingSpeed;
-        public ElympicsFloat forceRotate;
-        public ElympicsBool  isMove;
-        public ElympicsBool  isInit;
-        public ElympicsBool  isPause;
-
-        private GameObject _finishLineObj;
-        private Transform  _finishLineTf;
+        public  ElympicsFloat speed;
+        public  ElympicsFloat rotator;
+        public  ElympicsFloat rotatingSpeed;
+        public  ElympicsFloat forceRotate;
+        public  ElympicsBool  isMove;
+        public  ElympicsBool  isInit;
+        public  ElympicsBool  isPause;
+        public  ElympicsBool  isEndGame;
+        private GameObject    _finishLineObj;
+        private Transform     _finishLineTf;
 
         [Header("Effect")]
         [SerializeField] private List<Transform> explosionFx;
@@ -34,8 +34,6 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
         {
             isMove.Value = value;
         }
-        
-      
 
         public void Init()
         {
@@ -62,7 +60,6 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             soundDrive.enabled = false;
             myMesh.SetActive(false);
             isInit.Value = false;
-            GameController.Instance.EndGame();
         }
 
         private void PlayExplosion()
@@ -87,16 +84,18 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             rotatingSpeed = new(configRotatingSpeed);
             forceRotate   = new(0);
 
-            isMove  = new(false);
-            isInit  = new(false);
-            isPause = new(false);
+            isMove    = new(false);
+            isInit    = new(false);
+            isPause   = new(false);
+            isEndGame = new(false);
 
             soundDrive.enabled = false;
             ghostParticles.gameObject.SetActive(false);
         }
-       public void ElympicsUpdate()
+
+        public void ElympicsUpdate()
         {
-            if (!isInit)
+            if (!isInit || isEndGame)
             {
                 return;
             }
@@ -137,21 +136,34 @@ namespace SupernovaDriver.Scripts.SceneController.Game.Entity
             var y = Elympics.TickDuration;
             var z = forceRotate.Value;
 
-            myRigidbody.AddForce(myRigidbody.transform.forward * (speed.Value * Elympics.TickDuration * forceRotate.Value));
+            myRigidbody.AddForce(myRigidbody.transform.forward *
+                                 (speed.Value * Elympics.TickDuration * forceRotate.Value));
             myRigidbody.angularVelocity = Vector3.zero;
         }
-       
-       private void OnCollisionEnter(Collision col)
-       {
-           if (Elympics.IsServer) // endgame detect only in server
-           {
-               if (col.transform.CompareTag(Constants.DeadZoneTag))
-               {
-                   OnEndGame();
-                   col.gameObject.SetActive(false);
-               }
-           }
-       }
+
+        private void OnCollisionEnter(Collision col)
+        {
+            if (col.transform.CompareTag(Constants.DeadZoneTag))
+            {
+                if (Elympics.IsServer)
+                {
+                    soundDrive.enabled = false;
+                    isInit.Value       = false;
+                    isEndGame.Value    = true;
+
+                    Elympics.EndGame();
+                    GameController.Instance.EndGame(false);
+                }
+                else
+                {
+                    OnEndGame();
+                    GameController.Instance.EndGame(true);
+                }
+
+                col.gameObject.SetActive(false);
+            }
+        }
+
         #endregion
     }
 }

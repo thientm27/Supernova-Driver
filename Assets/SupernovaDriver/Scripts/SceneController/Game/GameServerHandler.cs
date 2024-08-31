@@ -93,5 +93,10 @@ namespace SupernovaDriver.Scripts.SceneController.Game
 
             DLogger.Log("All players have connected.");
         }
+
+        public void EndGameServer()
+        {
+            Elympics.EndGame();
+        }
     }
 }
