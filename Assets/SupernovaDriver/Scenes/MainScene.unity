@@ -467,6 +467,7 @@ MonoBehaviour:
   playButton: {fileID: 828432225}
   errorPanel: {fileID: 1971135230}
   throbber: {fileID: 424219828}
+  sessionManager: {fileID: 1741314912}
 --- !u!1 &139102007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4449,7 +4450,6 @@ GameObject:
   - component: {fileID: 1343853510}
   - component: {fileID: 1343853512}
   - component: {fileID: 1343853511}
-  - component: {fileID: 1343853514}
   m_Layer: 0
   m_Name: ExternalAuthorizer
   m_TagString: Untagged
@@ -4497,19 +4497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87306fecc74c8514f8feb337fce7a37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1343853514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343853508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58917b88b4612476993ee3611b45d4ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  authorizerConfig: {fileID: 11400000, guid: c395511c5740f4d0885f82e5e58c2494, type: 2}
 --- !u!1001 &1349921083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5420,6 +5407,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730787224}
   m_CullTransparentMesh: 0
+--- !u!114 &1741314912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2308011412948500162, guid: 915e03586cf042848bb2b1552a123930, type: 3}
+  m_PrefabInstance: {fileID: 447251840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d3528a65869f0041858ca5d49d5a376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1804850682
 GameObject:
   m_ObjectHideFlags: 0

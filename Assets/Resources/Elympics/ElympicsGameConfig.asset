@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameName: SupernovaDriver
   gameId: 3091c107-a803-4352-a712-d8ae23f0e3a9
-  gameVersion: 9
+  gameVersion: 10
   players: 1
   gameplayScene: Assets/SupernovaDriver/Scenes/GameScene.unity
   gameplaySceneAsset: {fileID: 102900000, guid: 84504f2763dd7534d94f51e75ad72c33, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
   prediction: 1
   predictionLimitInTicks: 8
   detailedNetworkLog: 0
-  mode: 1
+  mode: 2
   halfRemoteMode: 0
   ipForHalfRemoteMode: 127.0.0.1
   tcpPortForHalfRemoteMode: 9101
