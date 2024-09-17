@@ -5,12 +5,14 @@ using System;
 using JetBrains.Annotations;
 using Elympics.Models.Authentication;
 using ElympicsLobbyPackage;
+using ElympicsLobbyPackage.Session;
 
 public class MatchmakingManager : MonoBehaviour
 {
     [SerializeField] private Button playButton;
     [SerializeField] private ErrorPanel errorPanel;
     [SerializeField] private GameObject throbber;
+    [SerializeField] private SessionManager sessionManager;
 
     private void Start()
     {
@@ -21,6 +23,14 @@ public class MatchmakingManager : MonoBehaviour
         ElympicsLobbyClient.Instance.AuthenticationSucceeded += OnAuthenticationSucceeded;
 
         ElympicsLobbyClient.Instance.Matchmaker.MatchmakingFailed += OnMatchmakingFailed;
+
+        Test();
+    }
+    private async void Test()
+    {
+        //_sessionManager.AuthenticateFromExternalAndConnect();
+        await sessionManager.AuthenticateFromExternalAndConnect();
+
         ElympicsExternalCommunicator.Instance.GameStatusCommunicator.ApplicationInitialized();
     }
 

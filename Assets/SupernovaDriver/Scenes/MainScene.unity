@@ -4485,8 +4485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scsConfig: {fileID: 11400000, guid: 5bbd5c9b8c78848a3a8be43e7d211d32, type: 2}
-  standaloneAuthConfig: {fileID: 11400000, guid: c395511c5740f4d0885f82e5e58c2494, type: 2}
-  standaloneWalletConfig: {fileID: 11400000, guid: 58c72dd5cfa714314bc0f6eaf9589054, type: 2}
 --- !u!114 &1343853512
 MonoBehaviour:
   m_ObjectHideFlags: 0
